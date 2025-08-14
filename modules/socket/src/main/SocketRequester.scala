@@ -1,6 +1,7 @@
 package lila.socket
 
 import com.github.benmanes.caffeine.cache.RemovalCause
+import lila.memo.CacheApi
 
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -9,7 +10,7 @@ final class SocketRequester(using Executor) extends lila.core.socket.SocketReque
 
   private val counter = AtomicInteger(0)
 
-  private val inFlight = lila.memo.CacheApi.scaffeineNoScheduler
+  private val inFlight = CacheApi.scaffeineNoScheduler
     .expireAfterWrite(30.seconds)
     .removalListener: (id, _, cause) =>
       if cause != RemovalCause.EXPLICIT then logger.warn(s"SocketRequest $id removed: $cause")

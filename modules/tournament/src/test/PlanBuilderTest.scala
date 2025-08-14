@@ -5,6 +5,7 @@ import java.time.LocalDateTime
 import Schedule.Freq.*
 import Schedule.Speed.*
 import chess.variant.*
+import lila.core.i18n.TranslatorStub
 
 class PlanBuilderTest extends munit.FunSuite:
 

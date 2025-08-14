@@ -45,9 +45,9 @@ final class RatingChartApi(
         .map2(lila.common.String.html.safeJsonValue)
     }
 
+import lila.rating.PerfType.*
 object RatingChartApi:
 
-  import lila.rating.PerfType.*
   private val perfTypes = List(
     UltraBullet,
     Bullet,

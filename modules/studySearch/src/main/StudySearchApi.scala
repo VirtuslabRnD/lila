@@ -1,5 +1,6 @@
 package lila.studySearch
 
+import lila.search.SearchReadApi
 import lila.search.*
 import lila.search.client.SearchClient
 import lila.search.spec.Query

@@ -2,6 +2,7 @@ package lila.ublog
 
 import lila.core.id.UblogPostId
 import lila.core.ublog.{ BlogsBy, Quality }
+import lila.search.SearchReadApi
 import lila.search.*
 import lila.search.client.SearchClient
 import lila.search.spec.{ Query, SortBlogsBy }
