@@ -1,0 +1,106 @@
+bazel_dep(name = "buildozer", version = "8.2.1", dev_dependency = True,)
+
+bazel_dep(name = "rules_scala", version = "7.0.0")
+scala_config = use_extension(
+    "@rules_scala//scala/extensions:config.bzl",
+    "scala_config",
+)
+scala_config.settings(scala_version = "3.7.0")
+scala_deps = use_extension(
+    "@rules_scala//scala/extensions:deps.bzl",
+    "scala_deps",
+)
+scala_deps.scala()
+scala_deps.scalatest()
+scala_deps.specs2()
+register_toolchains("//:scala_toolchain")
+
+bazel_dep(name = "gazelle", version = "0.45.0")
+bazel_dep(name = "scala_gazelle", version = "")
+local_path_override(
+    module_name = "scala_gazelle",
+    path = "../../../bazel/foursquare_scala-gazelle/",
+)
+go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
+go_deps.module_override(
+    patches = ["@scala_gazelle//:tree-sitter_cdeps.patch"],
+    path = "github.com/smacker/go-tree-sitter",
+)
+
+bazel_dep(name = "rules_jvm_external", version = "6.8")
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+  artifacts = [
+    "com.github.alexandrnikitin:bloom-filter_3:0.13.1_lila-1",
+    "com.github.ben-manes.caffeine:caffeine:3.2.2",
+    "com.github.blemale:scaffeine_3:5.3.0",
+    "com.github.lichess-org.lila-search:client_3:3.2.0",
+    "com.github.lichess-org.scalachess:scalachess-play-json_3:17.9.3",
+    "com.github.lichess-org.scalachess:scalachess-rating_3:17.9.3",
+    "com.github.lichess-org.scalachess:scalachess-test-kit_3:17.9.3",
+    "com.github.lichess-org.scalachess:scalachess-tiebreak_3:17.9.3",
+    "com.github.lichess-org.scalachess:scalachess_3:17.9.3",
+    "com.github.lichess-org.scalalib:scalalib-core_3:11.9.0",
+    "com.github.lichess-org.scalalib:scalalib-lila_3:11.9.0",
+    "com.github.lichess-org.scalalib:scalalib-model_3:11.9.0",
+    "com.github.lichess-org.scalalib:scalalib-play-json_3:11.9.0",
+    "com.github.lichess-org:compression:3.1.1",
+    "com.google.auth:google-auth-library-oauth2-http:1.37.1",
+    "com.lihaoyi:scalatags_3:0.13.1",
+    "com.maxmind.geoip2:geoip2:4.0.1",
+    "com.roundeights:hasher_3:1.3.1",
+    "com.softwaremill.common:tagging_3:2.3.5",
+    "com.softwaremill.macwire:macros_3:2.6.6",
+    "com.softwaremill.macwire:util_3:2.6.6",
+    "com.typesafe.akka:akka-actor-typed_3:2.6.21",
+    "com.typesafe.akka:akka-actor_3:2.6.21",
+    "com.typesafe.akka:akka-slf4j_3:2.6.21",
+    "com.typesafe.akka:akka-stream_3:2.6.21",
+    "com.typesafe.play:play-ahc-ws-standalone_3:2.2.11",
+    "com.typesafe.play:play-logback_3:2.8.18-lila_3.22",
+    "com.typesafe.play:play-netty-server_3:2.8.18-lila_3.22",
+    "com.typesafe.play:play-server_3:2.8.18-lila_3.22",
+    "com.typesafe.play:play-ws-standalone-json_3:2.2.11",
+    "com.typesafe.play:play_3:2.8.18-lila_3.22",
+    "com.vladsch.flexmark:flexmark-ext-anchorlink:0.64.8",
+    "com.vladsch.flexmark:flexmark-ext-autolink:0.64.8",
+    "com.vladsch.flexmark:flexmark-ext-gfm-strikethrough:0.64.8",
+    "com.vladsch.flexmark:flexmark-ext-tables:0.64.8",
+    "com.vladsch.flexmark:flexmark-html2md-converter:0.64.8",
+    "com.vladsch.flexmark:flexmark:0.64.8",
+    "io.kamon:kamon-core_3:2.7.7",
+    "io.kamon:kamon-influxdb_3:2.7.7",
+    "io.kamon:kamon-prometheus_3:2.7.7",
+    "io.kamon:kamon-system-metrics_3:2.7.7",
+    "io.lettuce:lettuce-core:6.7.1.RELEASE",
+    "io.mola.galimatias:galimatias:0.2.2-NF",
+    "io.netty:netty-transport-native-kqueue:4.2.3.Final",
+    "org.apache.commons:commons-math3:3.6.1",
+    "org.apache.commons:commons-text:1.14.0",
+    "org.playframework:play-json_3:3.0.5",
+    "org.playframework:play-mailer_3:10.1.0",
+    "org.reactivemongo:reactivemongo-akkastream_3:1.1.0-RC15",
+    "org.reactivemongo:reactivemongo-shaded-native-osx-aarch-64:1.1.0-RC15",
+    "org.reactivemongo:reactivemongo_3:1.1.0-RC13",
+    "org.scalacheck:scalacheck_3:1.18.1",
+    "org.scalameta:munit-scalacheck_3:1.1.0",
+    "org.scalameta:munit_3:1.1.1",
+    "org.typelevel:alleycats-core_3:2.13.0",
+    "org.typelevel:cats-core_3:2.13.0",
+    "org.typelevel:cats-mtl_3:1.6-6ad7882-SNAPSHOT",
+    "org.typelevel:kittens_3:3.5.0",
+    "org.uaparser:uap-scala_3:0.20.0"
+  ],
+  repositories = [
+    "https://repo1.maven.org/maven2",
+    "https://jitpack.io",
+    "https://central.sonatype.com/repository/maven-snapshots",
+    "https://oss.sonatype.org/content/repositories/snapshots",
+    "https://raw.githubusercontent.com/lichess-org/lila-maven/master",
+    "https://repo.gradle.org/gradle/libs-releases/",
+  ],
+  lock_file = "//:maven_install.json",
+  known_contributing_modules = ["protobuf"],
+)
+use_repo(maven, "maven")
