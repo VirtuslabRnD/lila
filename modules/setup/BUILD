@@ -1,0 +1,38 @@
+load("@rules_scala//scala:scala.bzl", "scala_library")
+
+scala_library(
+    name = "setup",
+    srcs = [
+        "src/main/AiConfig.scala",
+        "src/main/ApiAiConfig.scala",
+        "src/main/ApiConfig.scala",
+        "src/main/Config.scala",
+        "src/main/Env.scala",
+        "src/main/FriendConfig.scala",
+        "src/main/HookConfig.scala",
+        "src/main/HumanConfig.scala",
+        "src/main/Mappings.scala",
+        "src/main/OpenConfig.scala",
+        "src/main/Processor.scala",
+        "src/main/SetupForm.scala",
+        "src/main/TimeMode.scala",
+        "src/main/ValidFen.scala",
+        "src/main/package.scala",
+        "src/main/ui/SetupUi.scala",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//modules/common",
+        "//modules/core",
+        "//modules/db",
+        "//modules/lobby",
+        "//modules/rating",
+        "//modules/ui",
+        "@maven//:com_github_lichess_org_scalachess_scalachess_3",
+        "@maven//:com_github_lichess_org_scalachess_scalachess_test_kit_3",
+        "@maven//:com_github_lichess_org_scalalib_scalalib_model_3",
+        "@maven//:com_softwaremill_macwire_macros_3",
+        "@maven//:com_softwaremill_macwire_util_3",
+        "@maven//:com_typesafe_play_play_3",
+    ],
+)

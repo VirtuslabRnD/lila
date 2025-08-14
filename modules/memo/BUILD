@@ -1,0 +1,38 @@
+load("@rules_scala//scala:scala.bzl", "scala_library")
+
+scala_library(
+    name = "memo",
+    srcs = [
+        "src/main/CacheApi.scala",
+        "src/main/Env.scala",
+        "src/main/ExpirableCallbackMemo.scala",
+        "src/main/MongoCache.scala",
+        "src/main/MongoRateLimit.scala",
+        "src/main/ParallelMongoQueue.scala",
+        "src/main/Picfit.scala",
+        "src/main/RateLimit.scala",
+        "src/main/SettingStore.scala",
+        "src/main/Snooze.scala",
+        "src/main/Syncache.scala",
+        "src/main/package.scala",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//modules/common",
+        "//modules/core",
+        "//modules/db",
+        "@maven//:com_github_ben_manes_caffeine_caffeine",
+        "@maven//:com_github_blemale_scaffeine_3",
+        "@maven//:com_github_lichess_org_scalalib_scalalib_lila_3",
+        "@maven//:com_roundeights_hasher_3",
+        "@maven//:com_softwaremill_macwire_macros_3",
+        "@maven//:com_softwaremill_macwire_util_3",
+        "@maven//:com_typesafe_akka_akka_actor_3",
+        "@maven//:com_typesafe_akka_akka_stream_3",
+        "@maven//:com_typesafe_play_play_3",
+        "@maven//:com_typesafe_play_play_ws_standalone_json_3",
+        "@maven//:org_reactivemongo_reactivemongo_bson_api_3",
+        "@maven//:org_scala_lang_scala3_library_3",
+        "@maven//:org_typelevel_alleycats_core_3",
+    ],
+)

@@ -1,0 +1,37 @@
+load("@rules_scala//scala:scala.bzl", "scala_library")
+
+scala_library(
+    name = "report",
+    srcs = [
+        "src/main/AutoAnalysis.scala",
+        "src/main/BSONHandlers.scala",
+        "src/main/Env.scala",
+        "src/main/ModReportFilter.scala",
+        "src/main/Reason.scala",
+        "src/main/Report.scala",
+        "src/main/ReportApi.scala",
+        "src/main/ReportForm.scala",
+        "src/main/ReportScore.scala",
+        "src/main/ReportThresholds.scala",
+        "src/main/Room.scala",
+        "src/main/model.scala",
+        "src/main/package.scala",
+        "src/main/ui/ReportUi.scala",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//modules/common",
+        "//modules/core",
+        "//modules/coreI18n",
+        "//modules/db",
+        "//modules/memo",
+        "//modules/ui",
+        "@maven//:com_github_lichess_org_scalalib_scalalib_lila_3",
+        "@maven//:com_softwaremill_macwire_macros_3",
+        "@maven//:com_softwaremill_macwire_util_3",
+        "@maven//:com_typesafe_akka_akka_actor_3",
+        "@maven//:com_typesafe_play_play_3",
+        "@maven//:org_reactivemongo_reactivemongo_bson_api_3",
+        "@maven//:org_typelevel_kittens_3",
+    ],
+)

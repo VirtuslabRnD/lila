@@ -1,0 +1,61 @@
+load("@rules_scala//scala:scala.bzl", "scala_library", "scala_test")
+
+scala_library(
+    name = "analyse",
+    srcs = [
+        "src/main/AccuracyCP.scala",
+        "src/main/AccuracyPercent.scala",
+        "src/main/AnalyseBsonHandlers.scala",
+        "src/main/Analyser.scala",
+        "src/main/AnalysisRepo.scala",
+        "src/main/Annotator.scala",
+        "src/main/Env.scala",
+        "src/main/ExternalEngine.scala",
+        "src/main/JsonView.scala",
+        "src/main/RequesterApi.scala",
+        "src/main/actorApi.scala",
+        "src/main/package.scala",
+        "src/main/ui/AnalyseUi.scala",
+        "src/main/ui/ReplayUi.scala",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//modules/common",
+        "//modules/core",
+        "//modules/db",
+        "//modules/memo",
+        "//modules/tree",
+        "//modules/ui",
+        "@maven//:com_github_lichess_org_scalachess_scalachess_3",
+        "@maven//:com_github_lichess_org_scalachess_scalachess_test_kit_3",
+        "@maven//:com_github_lichess_org_scalalib_scalalib_lila_3",
+        "@maven//:com_github_lichess_org_scalalib_scalalib_model_3",
+        "@maven//:com_roundeights_hasher_3",
+        "@maven//:com_softwaremill_macwire_macros_3",
+        "@maven//:com_softwaremill_macwire_util_3",
+        "@maven//:com_typesafe_play_play_3",
+        "@maven//:dev_optics_monocle_core_3",
+        "@maven//:org_playframework_play_json_3",
+        "@maven//:org_reactivemongo_reactivemongo_bson_api_3",
+    ],
+)
+
+scala_test(
+    name = "analyse-tests",
+    srcs = [
+        "src/test/AccuracyPercentTest.scala",
+        "src/test/AnnotatorTest.scala",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//modules/analyse",
+        "//modules/core",
+        "//modules/coreI18n:coreI18n-tests",
+        "//modules/tree",
+        "@maven//:com_github_lichess_org_scalachess_scalachess_3",
+        "@maven//:com_github_lichess_org_scalachess_scalachess_test_kit_3",
+        "@maven//:com_github_lichess_org_scalalib_scalalib_lila_3",
+        "@maven//:com_typesafe_play_play_3",
+        "@maven//:org_scalameta_munit_scalacheck_3",
+    ],
+)
