@@ -1,16 +1,11 @@
-.sbtopts
 .bsp
 .bloop/
 .metals/
-project/.bloop/
 conf/application.conf
 conf/version.conf
 ui/@build/bleep/bleep.config.json
 
 logs
-project/metals.sbt
-project/project
-project/target
 public/compiled
 public/vendor/highcharts-4.2.5
 public/vendor/hopscotch

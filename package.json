@@ -65,7 +65,7 @@
     "i18n-file-gen": "pnpx tsx bin/i18n-file-gen.ts",
     "test": "vitest run --config=ui/vitest.config.mts",
     "test:watch": "vitest --config=ui/vitest.config.mts",
-    "multilog": "pnpm serverlog & ui/build -w"
+    "multilog": "pnpm serverlog & ui/build-ui.sh -w"
   },
   "browserslist": [
     "Chrome >= 98",

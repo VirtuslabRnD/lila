@@ -1,6 +1,6 @@
 .bsp
-.metals
 .scala-build
 .github
+gazelle
 target
 project

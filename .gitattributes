@@ -1,5 +1,5 @@
 /lila       text eol=lf
-/ui/build   text eol=lf
+/ui/build-ui.sh   text eol=lf
 public/lifat/nnue/*.nnue filter=lfs diff=lfs merge=lfs -text
 public/lifat/vosk/*.tar.gz filter=lfs diff=lfs merge=lfs -text
 public/lifat/bots/net/*.pb filter=lfs diff=lfs merge=lfs -text
