@@ -8,10 +8,9 @@ scala_toolchain(
     dependency_mode = "transitive",
     dependency_tracking_method = "ast",
     scalacopts = [
-        "-Xsource:3",
         "-language:postfixOps",
         "-release:21",
-        "-Xlint:unused",
+        "-Wunused:imports,privates,locals,implicits",
     ],
     strict_deps_mode = "off",
 )
